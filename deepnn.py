@@ -27,21 +27,21 @@ class_num = dict(zip(classes, range(n_class)))
 width = 299
 
 X_train_orig = np.zeros((n, width, width, 3), dtype=np.uint8)
-Y_train = np.zeros((n, n_class), dtype=np.uint8)
+train_y = np.zeros((n, n_class), dtype=np.uint8)
 
 for i in tqdm(range(n)):
     X_train_orig[i] = cv2.resize(cv2.imread('input/train/%s.jpg' % labels['id'][i]), (width, width))
-    Y_train[i][class_num[labels['class'][i]]] = 1
+    train_y[i][class_num[labels['class'][i]]] = 1
 
 test_labels = pd.read_csv('test_labels.csv')
-n_test = len(test_df)
+n_test = len(test_labels)
 
 X_test_orig = np.zeros((n_test, width, width, 3), dtype=np.uint8)
-Y_test = np.zeros((n_test, n_class), dtype=np.uint8)
+test_y = np.zeros((n_test, n_class), dtype=np.uint8)
 
 for i in tqdm(range(n_test)):
     X_test_orig[i] = cv2.resize(cv2.imread('input/test/%s.jpg' % test_labels['id'][i]), (width, width))
-    Y_test[i][class_num[test_labels['class'][i]]] = 1
+    test_y[i][class_num[test_labels['class'][i]]] = 1
 
 
 ## Exploratory
@@ -49,7 +49,7 @@ for i in tqdm(range(n_test)):
 # View an indexed image
 index = 30
 plt.imshow(X_train_orig[index])
-print ("y = " + str(Y_train[0,index]) + ". Class label: " + classes[Y_train[0,index]].decode("utf-8"))
+print ("y = " + str(train_y[0,index]) + ". Class label: " + classes[train_y[0,index]].decode("utf-8"))
 
 # parameters
 m_train = X_train_orig.shape[0]
@@ -60,23 +60,23 @@ print ("m_train: " + str(m_train))
 print ("m_test: " + str(m_test))
 print ("image size: (" + str(num_px) + ", " + str(num_px) + ", 3)")
 print ("train_x_orig shape: " + str(X_train_orig.shape))
-print ("train_y shape: " + str(Y_train.shape))
+print ("train_y shape: " + str(train_y.shape))
 print ("test_x_orig shape: " + str(X_test_orig.shape))
-print ("test_y shape: " + str(Y_test.shape))
+print ("test_y shape: " + str(test_y.shape))
 
 #Image to vector conversion.
 # Reshape train and test original sets
 
-train_x_flatten = train_x_orig.reshape(train_x_orig.shape[0], -1).T   # The "-1" makes reshape flatten the remaining dimensions
-test_x_flatten = test_x_orig.reshape(test_x_orig.shape[0], -1).T
+train_x_flatten = X_train_orig.reshape(train_x_orig.shape[0], -1).T   # The "-1" makes reshape flatten the remaining dimensions
+test_x_flatten = X_test_orig.reshape(test_x_orig.shape[0], -1).T
 
 # Standardize flattened train and test sets
 
 train_x = train_x_flatten/255.
 test_x = test_x_flatten/255.
 
-​print("train_x's shape: " + str(train_x.shape))
-print("test_x's shape: " + str(test_x.shape))
+print("train_x shape:" + str(train_x.shape))
+print("test_x shape: " + str(test_x.shape))
 
 
 ## Shallow Model Constants
