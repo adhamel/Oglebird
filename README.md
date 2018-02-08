@@ -1,4 +1,0 @@
-# Oglebird
-# NeuralNets
-# Oglebird
-# Oglebird
