@@ -1,4 +1,6 @@
 ## Binary Classification Model
+##
+## Neural Networks and Deep Learning from deeplearning.ai
 
 import h5py
 import matplotlib.pyplot as plt

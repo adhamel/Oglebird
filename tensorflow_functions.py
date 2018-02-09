@@ -1,4 +1,6 @@
-# Exploring Tensorflow
+## Exploring Tensorflow
+##
+## Improving Deep NNs from deeplearning.ai
 
 import math
 import tqdm
@@ -14,36 +16,15 @@ from tensorflow.python.framework import ops
 from tf_utils import load_dataset, random_mini_batches, convert_to_one_hot, predict
 
 
-
 # Linear function
 def linear_function():
-
-    """
-
-    Implements a linear function:
-
-            Initializes W to be a random tensor of shape (4,3)
-
-            Initializes X to be a random tensor of shape (3,1)
-
-            Initializes b to be a random tensor of shape (4,1)
-
-    Returns:
-
-    result -- runs the session for Y = WX + b
-
-    """
 
     np.random.seed(2818)
 
     X = tf.constant(np.random.randn(3, 1), name = "X")
-
     W = tf.constant(np.random.randn(4, 3), name = "W")
-
     b = tf.constant(np.random.randn(4, 1), name = "b")
-
     Y = tf.add(tf.matmul(W, X), b)
-
 
     sess = tf.Session()
     result = sess.run(Y)

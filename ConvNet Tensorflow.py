@@ -1,3 +1,6 @@
+## CNN modeling with Tensorflow
+##
+## Convolutional NNs from deeplearning.ai
 
 import math
 import numpy as np

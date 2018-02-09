@@ -1,3 +1,6 @@
+## Helper Functions for Shallow and Deep NNs
+##
+## Neural Networks and Deep Learning from deeplearning.ai
 
 import numpy as np
 import h5py

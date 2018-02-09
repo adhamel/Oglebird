@@ -1,4 +1,6 @@
-# Convolutional Neural Network
+## Helper Functions for Convolutional Neural Networks
+##
+## Convolutional NNs from deeplearning.ai
 
 
 import numpy as np
