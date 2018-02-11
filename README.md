@@ -13,3 +13,5 @@ ConvolutionalNN:
 ConvNet Tensorflow:
   convolutional neural net modeling with Tensorflow
   
+cnn_keras_tf:
+  classify faces as happy/unhappy using Keras and Tensorflow
